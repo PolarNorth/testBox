@@ -28,7 +28,7 @@ public class MathBoxTests {
 
     @Test
     void testWithDoubles(){
-        double[] intArray = new double[]{1.0, 2.0, 3.0};
+        double[] intArray = new double[]{0.5, 2.5, 3.0};
 
         Number[] testArray = new Number[3];
         for (int i=0; i < 3; i++){
