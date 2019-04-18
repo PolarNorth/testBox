@@ -36,5 +36,7 @@ public class ObjectBoxTests {
         assertThrows(IllegalArgumentException.class, () -> {
             objectBox.deleteObject("DEF");
         });
+        // Testing if dump() works
+        assertNotNull(objectBox.dump());
     }
 }

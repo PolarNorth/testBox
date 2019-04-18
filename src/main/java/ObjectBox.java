@@ -26,4 +26,15 @@ public class ObjectBox {
     private boolean findObject(Object obj){
         return this.objectList.contains(obj);
     }
+
+    public String dump(){
+        return this.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "ObjectBox{" +
+                "objectList=" + objectList +
+                '}';
+    }
 }
