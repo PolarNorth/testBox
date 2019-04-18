@@ -1,30 +1,29 @@
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class ObjectBox {
-    private List<Object> objectList;
+    protected Collection<Object> objectCollection;
 
     public ObjectBox(){
-        objectList = new ArrayList<>();
+        objectCollection = new ArrayList<>();
     }
 
     public ObjectBox(Collection<Object> objects){
-        objectList = new ArrayList<>(objects);
+        objectCollection = new ArrayList<>(objects);
     }
 
     public void addObject(Object obj){
-        this.objectList.add(obj);
+        this.objectCollection.add(obj);
     }
 
     public void deleteObject(Object obj){
         if (!findObject(obj))
             throw new IllegalArgumentException("Object is not found");
-        this.objectList.remove(obj);
+        this.objectCollection.remove(obj);
     }
 
     private boolean findObject(Object obj){
-        return this.objectList.contains(obj);
+        return this.objectCollection.contains(obj);
     }
 
     public String dump(){
@@ -34,7 +33,7 @@ public class ObjectBox {
     @Override
     public String toString() {
         return "ObjectBox{" +
-                "objectList=" + objectList +
+                "objectCollection=" + objectCollection +
                 '}';
     }
 }

@@ -1,7 +1,6 @@
 import java.util.*;
 
-public class MathBox {
-    private Set<Number> numberSet;
+public class MathBox extends ObjectBox {
     private boolean isInteger = true;
     // We don't know whether Number is a floating point number or an integer
     // Probably, we should store either array of longs or doubles
@@ -11,15 +10,15 @@ public class MathBox {
 
     public MathBox(Number[] inputNumbers) {
         // Initializing set
-        numberSet = new HashSet<>();
+        this.objectCollection = new HashSet<>();
         // Adding elements to the collection
         for (Number num : inputNumbers){
-            if (numberSet.contains(num)){
+            if (objectCollection.contains(num)){
                 // If collection contains repeated elements, throw an exception
-                numberSet = null;
+                objectCollection = null;
                 throw new IllegalArgumentException("Collection contains repeating elements");
             }
-            numberSet.add(num);
+            objectCollection.add(num);
             // Checking if this number is double or float
             if (!this.checkIfInteger(num)){
                 isInteger = false;
@@ -30,9 +29,10 @@ public class MathBox {
 
     public Number summator(){
         Number result = null;
-        if (numberSet.size() == 0)
+        if (objectCollection.size() == 0)
             return null;
-        for (Number num : this.numberSet){
+        for (java.lang.Object objNum : this.objectCollection){
+            Number num = (Number)objNum;
             if (result == null){
                 result = num;
                 continue;
@@ -49,13 +49,14 @@ public class MathBox {
     }
 
     public void splitter(Number divisor){
-        if (numberSet.size() == 0)
+        if (objectCollection.size() == 0)
             return;
         if (divisor.doubleValue() == 0){
             return;
         }
-        Set<Number> newNumberSet = new HashSet<>();
-        for (Number num : this.numberSet){
+        Set<java.lang.Object> newNumberSet = new HashSet<>();
+        for (java.lang.Object objNum : this.objectCollection){
+            Number num = (Number)objNum;
             Number result = null;
             if (isInteger){
                 result = num.longValue() / divisor.longValue();
@@ -63,9 +64,8 @@ public class MathBox {
                 result = num.doubleValue() / divisor.longValue();
             }
             newNumberSet.add(result);
-            System.out.println(result);
         }
-        this.numberSet = newNumberSet;
+        this.objectCollection = newNumberSet;
     }
 
     private boolean checkIfInteger(Number num){
@@ -74,24 +74,32 @@ public class MathBox {
         return false;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (obj.getClass() != MathBox.class){
             throw new IllegalArgumentException();
         }
-        return numberSet.equals(((MathBox)obj).numberSet);
+        return objectCollection.equals(((MathBox)obj).objectCollection);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.numberSet, this.isInteger);
+        return Objects.hash(this.objectCollection, this.isInteger);
     }
 
     @Override
     public String toString() {
         return "MathBox{" +
-                "numberSet=" + numberSet +
+                "objectCollection=" + objectCollection +
                 ", isInteger=" + isInteger +
                 '}';
+    }
+
+    public void addObject(Object obj){
+        throw new IllegalArgumentException("Can't add object to MathBox");
+    }
+
+    private boolean findObject(Object obj){
+        Number num = (Number)obj;
+        return this.objectCollection.contains(obj);
     }
 }
