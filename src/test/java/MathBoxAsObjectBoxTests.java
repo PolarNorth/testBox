@@ -21,7 +21,7 @@ public class MathBoxAsObjectBoxTests {
         MathBox mb = new MathBox(testArray);
 
         ObjectBox ob = mb;
-        ob.deleteObject(testArray[0]);
+        ob.deleteObject(1);
         ob.deleteObject(testArray[1]);
         ob.deleteObject(testArray[2]);
 
