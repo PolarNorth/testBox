@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Array;
 
-public class MathBoxTest {
+public class MathBoxTests {
 
     @Test
     void testWithIntegers(){
